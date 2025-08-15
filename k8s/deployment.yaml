@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-hello-world-cicd
+  namespace: flask-cicd
+  labels:
+    app: flask-hello-world-cicd
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: flask-hello-world-cicd
+  template:
+    metadata:
+      labels:
+        app: flask-hello-world-cicd
+    spec:
+      containers:
+      - name: flask-app
+        image: flask-hello-world:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
+          name: http
+        env:
+        - name: ENVIRONMENT
+          value: "CI/CD-Demo"
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 5
