@@ -17,14 +17,14 @@ spec:
     spec:
       containers:
       - name: flask-app
-        image: maisara99//flask-cicd:latest
+        image: maisara99/flask-cicd:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
           name: http
         env:
         - name: ENVIRONMENT
-          value: "CI/CD-latest"
+          value: "CI/CD-76691e2-2025-08-16T00:34:52Z"
         resources:
           requests:
             memory: "64Mi"
