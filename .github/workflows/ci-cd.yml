@@ -171,17 +171,24 @@ jobs:
     needs: build
     name: Security Scan
     if: github.ref == 'refs/heads/main'
-    
+    permissions:
+      security-events: write    # Required for SARIF upload
+      actions: read
+      contents: read
+  
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v4  # Required for git repository context
+    
     - name: Run Trivy vulnerability scanner
-      uses: aquasecurity/trivy-action@master
+      uses: aquasecurity/trivy-action@0.24.0
       with:
-        image-ref: ${{ env.DOCKER_REPOSITORY }}:latest
+        image-ref: ${{ env.DOCKER_REPOSITORY }}:latest  # Make sure this env var is defined
         format: 'sarif'
         output: 'trivy-results.sarif'
-
+      
     - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@v2
+      uses: github/codeql-action/upload-sarif@v3  # Updated to v3
       if: always()
       with:
         sarif_file: 'trivy-results.sarif'
