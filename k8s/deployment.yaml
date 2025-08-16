@@ -17,14 +17,14 @@ spec:
     spec:
       containers:
       - name: flask-app
-        image: flask-hello-world:latest
-        imagePullPolicy: Never
+        image: maisara99//flask-cicd:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 5000
           name: http
         env:
         - name: ENVIRONMENT
-          value: "CI/CD-Demo"
+          value: "CI/CD-latest"
         resources:
           requests:
             memory: "64Mi"
@@ -44,3 +44,10 @@ spec:
             port: 5000
           initialDelaySeconds: 5
           periodSeconds: 5
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
