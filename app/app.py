@@ -13,7 +13,7 @@ VERSION = os.environ.get('VERSION', '1.0.0')
 @app.route('/')
 def hello_world():
     return jsonify({
-        'message': 'Hello World from Flask CI/CD!',
+        'message': 'CI/CD TESTING WITH FLEET GITOPS',
         'hostname': socket.gethostname(),
         'timestamp': datetime.utcnow().isoformat(),
         'version': VERSION,
