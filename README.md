@@ -37,7 +37,7 @@ This project demonstrates a complete enterprise-grade CI/CD pipeline that:
 
 ### **CI Pipeline**
 - **GitHub Actions** - Automated CI/CD workflows
-- **Docker** - Multi-architecture containerization (AMD64/ARM64)
+- **Docker** - Image build (containerization)
 - **Security Scanning** - Trivy, Bandit, Safety
 - **Code Quality** - Flake8, Pytest
 
@@ -49,7 +49,6 @@ This project demonstrates a complete enterprise-grade CI/CD pipeline that:
 
 ### **Application**
 - **Python Flask** - Web application framework
-- **Gunicorn** - Production WSGI server
 
 ## 📋 Prerequisites
 
@@ -57,6 +56,7 @@ This project demonstrates a complete enterprise-grade CI/CD pipeline that:
 - Rancher management platform installed
 - Docker Hub account
 - GitHub repository with Actions enabled
+- An application to test with. (or you can use mine).
 
 ## 🚀 Quick Start
 
