@@ -2,6 +2,8 @@
 
 defaultNamespace: flask-cicd
 
-
-kustomize:
-  dir: ./k8s
+paths:
+  - k8s/namespace.yaml
+  - k8s/deployment.yaml
+  - k8s/service.yaml
+  - k8s/ingress.yaml
