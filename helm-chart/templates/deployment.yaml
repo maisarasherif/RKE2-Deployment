@@ -1,37 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flask-hello-world-cicd
- # namespace: flask-cicd
+  name: {{ include "flask-cicd.fullname" . }}
   labels:
-    app: flask-hello-world-cicd
+    {{- include "flask-cicd.labels" . | nindent 4 }}
 spec:
-  replicas: 3
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: flask-hello-world-cicd
+      {{- include "flask-cicd.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app: flask-hello-world-cicd
+        {{- include "flask-cicd.selectorLabels" . | nindent 8 }}
     spec:
       containers:
       - name: flask-app
-        image: maisara99/flask-cicd:latest
-        imagePullPolicy: Always
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: 5000
           name: http
         env:
         - name: ENVIRONMENT
-          value: "CI/CD-b4dedd2-2025-08-16T12:13:57Z"
+          value: "{{ .Values.environment }}"
         resources:
-          requests:
-            memory: "64Mi"
-            cpu: "50m"
-          limits:
-            memory: "128Mi"
-            cpu: "100m"
+          {{- toYaml .Values.resources | nindent 10 }}
         livenessProbe:
           httpGet:
             path: /health

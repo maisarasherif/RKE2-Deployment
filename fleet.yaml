@@ -1,8 +1,33 @@
 # This file should be in the ROOT directory
 
+# Fleet configuration using Helm mode
 defaultNamespace: flask-cicd
 
-paths:
-  - k8s/deployment.yaml
-  - k8s/service.yaml
-  - k8s/ingress.yaml
+# Use Helm to deploy - this matches what Fleet expects
+helm:
+  chart: ./helm-chart
+  
+  # Values to pass to the Helm chart
+  values:
+    image:
+      repository: maisara99/flask-cicd
+      tag: latest
+      pullPolicy: Always
+    
+    service:
+      type: ClusterIP
+      port: 80
+      targetPort: 5000
+    
+    ingress:
+      enabled: true
+      className: nginx
+      host: flask-cicd.local
+    
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "50m"
+      limits:
+        memory: "128Mi"
+        cpu: "100m"
