@@ -24,7 +24,7 @@ spec:
           name: http
         env:
         - name: ENVIRONMENT
-          value: "CI/CD-76691e2-2025-08-16T00:34:52Z"
+          value: "CI/CD-f66cf81-2025-08-16T00:59:40Z"
         resources:
           requests:
             memory: "64Mi"
