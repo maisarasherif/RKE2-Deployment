@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: write
+  actions: read
+
 env:
   DOCKER_REGISTRY: docker.io
   DOCKER_REPOSITORY: ${{ secrets.DOCKER_USERNAME }}/flask-cicd
@@ -119,11 +123,15 @@ jobs:
     needs: build
     name: Update K8s Manifests
     if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: write  # Need write if you're updating manifests
+      actions: read
     
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
+        repository: ${{ github.repository }}
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Update image tag in manifests
