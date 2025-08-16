@@ -1,8 +1,7 @@
-# This file should be in the ROOT directory (flask-cicd/)
-# It tells Fleet how to deploy the k8s/ directory
+# This file should be in the ROOT directory
 
 defaultNamespace: flask-cicd
 
-# Simple deployment - just deploy everything in k8s/
+
 kustomize:
   dir: ./k8s
