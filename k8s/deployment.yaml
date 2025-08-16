@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flask-hello-world-cicd
-  namespace: flask-cicd
+ # namespace: flask-cicd
   labels:
     app: flask-hello-world-cicd
 spec:
