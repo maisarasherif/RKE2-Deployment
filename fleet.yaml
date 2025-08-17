@@ -1,6 +1,7 @@
 # This file should be in the ROOT directory
 # Fleet configuration using Helm mode
 
+
 defaultNamespace: flask-cicd
 
 helm:

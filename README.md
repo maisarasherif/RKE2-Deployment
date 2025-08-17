@@ -223,4 +223,4 @@ helm install flask-cicd ./helm-chart --namespace flask-cicd --dry-run
 
 ## 🏷️ Tags
 
-`GitOps` `CI/CD` `Kubernetes` `RKE2` `Rancher` `Fleet` `Docker` `Helm` `GitHub Actions` `DevOps` `Infrastructure as Code` `Security Scanning` `Python` `Flask`
+`GitOps` `CI/CD` `Kubernetes` `RKE2` `Rancher` `Fleet` `Docker` `Helm` `GitHub Actions` `DevOps` `DevSecOps` `Infrastructure as Code` `Security Scanning` `Python` `Flask`

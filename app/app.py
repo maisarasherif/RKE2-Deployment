@@ -12,7 +12,7 @@ VERSION = os.environ.get('VERSION', '1.0.0')
 @app.route('/')
 def hello_world():
     return jsonify({
-        'message': 'CI/CD TESTING WITH FLEET GITOPS',
+        'message': 'GitOps CI/CD with RANCHER FLEET',
         'hostname': socket.gethostname(),
         'timestamp': datetime.utcnow().isoformat(),
         'version': VERSION,
@@ -44,6 +44,7 @@ def readiness_check():
         'status': 'ready',
         'timestamp': datetime.utcnow().isoformat()
     }), 200
+
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
