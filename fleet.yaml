@@ -1,13 +1,11 @@
 # This file should be in the ROOT directory
-
 # Fleet configuration using Helm mode
+
 defaultNamespace: flask-cicd
 
-# Use Helm to deploy - this matches what Fleet expects
 helm:
   chart: ./helm-chart
   
-  # Values to pass to the Helm chart
   values:
     image:
       repository: maisara99/flask-cicd

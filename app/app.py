@@ -5,7 +5,6 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-# Get build information from environment variables
 BUILD_DATE = os.environ.get('BUILD_DATE', 'unknown')
 VCS_REF = os.environ.get('VCS_REF', 'unknown')
 VERSION = os.environ.get('VERSION', '1.0.0')

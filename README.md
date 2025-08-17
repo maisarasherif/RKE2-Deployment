@@ -50,13 +50,40 @@ This project demonstrates a complete enterprise-grade CI/CD pipeline that:
 ### **Application**
 - **Python Flask** - Web application framework
 
+## ⚠️ Important Disclaimer
+
+**This project demonstrates the CI/CD pipeline and GitOps workflow implementation. Additional infrastructure configuration may be required for your specific environment:**
+
+### **Networking & Infrastructure:**
+- **Network configuration** - CNI setup, pod-to-pod networking, ingress controller installation
+- **Load balancer** - External load balancer or NodePort configuration for ingress access
+- **DNS resolution** - Configure DNS entries or `/etc/hosts` for ingress hostnames
+- **Firewall rules** - Open required ports (80, 443, 6443, etc.) between nodes
+- **Storage provisioning** - Configure persistent volume provisioning if needed
+
+### **Kubernetes Environment:**
+- **Resource allocation** - Ensure adequate CPU/RAM for your cluster size
+- **Node configuration** - Proper node labels, taints, and resource limits
+- **RBAC permissions** - Service account permissions and cluster role bindings
+- **Security policies** - Pod security policies, network policies as needed
+
+### **Troubleshooting Considerations:**
+- Kubernetes cluster networking issues
+- Container runtime configuration
+- Ingress controller compatibility
+- Helm chart deployment conflicts
+- Fleet GitOps synchronization problems
+
+**💡 This project focuses on the automation pipeline - infrastructure setup and troubleshooting are beyond the scope but are essential for production deployments.**
+
 ## 📋 Prerequisites
 
-- RKE2 Kubernetes cluster
-- Rancher management platform installed
-- Docker Hub account
+- RKE2 Kubernetes cluster (properly configured and accessible)
+- Rancher management platform installed and configured
+- Docker Hub account with push permissions
 - GitHub repository with Actions enabled
-- An application to test with. (or you can use mine).
+- Basic understanding of Kubernetes networking and troubleshooting
+- An application to test with. (or you can use mine)
 
 ## 🚀 Quick Start
 
@@ -81,7 +108,7 @@ image:
   tag: latest
 
 ingress:
-  host: your-domain.local
+  host: your-domain
 ```
 
 ### 4. Setup Rancher Fleet GitRepo
@@ -161,13 +188,9 @@ helm install flask-cicd ./helm-chart --namespace flask-cicd --dry-run
 
 ## 📊 Key Features
 
-### **Security**
+### **Security & Reliability**
 - 🔒 Multi-layer security scanning (image, dependencies, code)
 - 🛡️ Non-root container execution
-- 🔐 Security context and capabilities dropping
-- 📋 SARIF integration with GitHub Security tab
-
-### **Reliability**
 - 🔄 Self-healing deployments with Fleet
 - ❤️ Health checks (liveness/readiness probes)
 - 🚀 Zero-downtime rolling updates
